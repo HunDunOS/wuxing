@@ -1,5 +1,5 @@
 00 ============================================================
-00 五行 V13 终极满编矩阵 解释器
+00 五行 V13 终极满编矩阵 解释器 v0.20
 00 ============================================================
 
 00 ---- 全局变量 ----
@@ -12,7 +12,7 @@ ts g_skip = 0
 00 ---- 函数 ----
 tt zhu 01 fname 02 -> u64  08
     00 主函数
-    st dd 03wuxing interpreter v0.1004
+    st dd 03wuxing interpreter v0.2004
     00 检测环境
     g_env = 1
     00 硬编码测试字符串
@@ -32,43 +32,36 @@ tt interpret 01  02 -> u64  08
     00 主循环
     ll  08
         lz g_pos g_len  08 ls  09
-        00 读下一个 token
-        tz len = zt next_token 01 02
-        00 执行 token
-        zt exec_token 01 len 02
-     09
-    zz 0
- 09
-
-00 ============================================================
-00 读下一个 token
-00 ============================================================
-tt next_token 01  02 -> u64  08
-    00 跳过空格
-    ll  08
-        lz g_pos g_len  08 zz 0  09
+        00 读下一个字符
         tz c = fh 01 g_src ht g_pos 02
         g_pos = g_pos ht 1
-     09
-    00 读 token 名
-    tz s = 0
-    ll  08
-        lz g_pos g_len  08 ls  09
-        tz c = fh 01 g_src ht g_pos 02
-        g_pos = g_pos ht 1
-     09
-    tz len = g_pos hz s
-    zz len
- 09
-
-00 ============================================================
-00 执行 token
-00 ============================================================
-tt exec_token 01 tok 02 -> u64  08
-    00 识别 jj 指令
-    lr tok == 2  08
-        00 打印换行
-        zt _rt_putc 01 10 02
+        00 打印字符（调试）
+        zt _rt_putc 01 c 02
+        00 识别 jj 指令
+        lz c 106  08
+            00 读下一个字符
+            tz c2 = fh 01 g_src ht g_pos 02
+            g_pos = g_pos ht 1
+            lz c2 106  08
+                00 识别 jj！跳过空格
+                ll  08
+                    lz g_pos g_len  08 ls  09
+                    tz sc = fh 01 g_src ht g_pos 02
+                    lh sc 32  08 ls  09
+                    g_pos = g_pos ht 1
+                 09
+                00 打印字符串！
+                ll  08
+                    lz g_pos g_len  08 ls  09
+                    tz pc = fh 01 g_src ht g_pos 02
+                    lz pc 32  08 ls  09
+                    lz pc 10  08 ls  09
+                    zt _rt_putc 01 pc 02
+                    g_pos = g_pos ht 1
+                 09
+                zt _rt_putc 01 10 02
+             09
+         09
      09
     zz 0
  09

@@ -31,12 +31,10 @@ tt interpret 01  02 -> u64  08
     st dd 03interpret loop started04
     00 主循环
     ll  08
-        lz g_pos g_len  08 ls  09
+        lh g_pos g_len  08 ls  09
         00 读下一个字符
         tz c = fh 01 g_src ht g_pos 02
         g_pos = g_pos ht 1
-        00 打印字符（调试）
-        zt _rt_putc 01 c 02
         00 识别 jj 指令
         lh c 106  08
             00 读下一个字符

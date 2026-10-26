@@ -1,20 +1,16 @@
 00 ============================================================
-00 五行 V13 终极满编矩阵 解释器 v0.20
+00 五行 V13 终极满编矩阵 解释器 v0.21
 00 ============================================================
 
 00 ---- 全局变量 ----
 ts g_src = 0
 ts g_pos = 0
 ts g_len = 0
-ts g_env = 0
-ts g_skip = 0
 
 00 ---- 函数 ----
 tt zhu 01 fname 02 -> u64  08
     00 主函数
-    st dd 03wuxing interpreter v0.2004
-    00 检测环境
-    g_env = 1
+    st dd 03wuxing interpreter v0.2104
     00 硬编码测试字符串
     g_src = 03jj hello world04
     g_len = 14
@@ -35,8 +31,6 @@ tt interpret 01  02 -> u64  08
         00 读下一个字符
         tz c = fh 01 g_src ht g_pos 02
         g_pos = g_pos ht 1
-        00 打印字符（调试）
-        zt _rt_putc 01 c 02
         00 识别 jj 指令
         lh c 106  08
             00 读下一个字符

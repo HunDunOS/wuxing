@@ -38,24 +38,24 @@ tt interpret 01  02 -> u64  08
         00 打印字符（调试）
         zt _rt_putc 01 c 02
         00 识别 jj 指令
-        lz c 106  08
+        lh c 106  08
             00 读下一个字符
             tz c2 = fh 01 g_src ht g_pos 02
             g_pos = g_pos ht 1
-            lz c2 106  08
+            lh c2 106  08
                 00 识别 jj！跳过空格
                 ll  08
-                    lz g_pos g_len  08 ls  09
+                    lh g_pos g_len  08 ls  09
                     tz sc = fh 01 g_src ht g_pos 02
-                    lh sc 32  08 ls  09
+                    lz sc 32  08 ls  09
                     g_pos = g_pos ht 1
                  09
                 00 打印字符串！
                 ll  08
-                    lz g_pos g_len  08 ls  09
+                    lh g_pos g_len  08 ls  09
                     tz pc = fh 01 g_src ht g_pos 02
-                    lz pc 32  08 ls  09
-                    lz pc 10  08 ls  09
+                    lh pc 32  08 ls  09
+                    lh pc 10  08 ls  09
                     zt _rt_putc 01 pc 02
                     g_pos = g_pos ht 1
                  09

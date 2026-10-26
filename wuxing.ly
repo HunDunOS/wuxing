@@ -31,10 +31,10 @@ tt interpret 01  02 -> u64  08
         00 读下一个字符
         tz c = fh 01 g_src ht g_pos 02
         g_pos = g_pos ht 1
-        00 打印字符（调试）
-        zt _rt_putc 01 c 02
         00 识别 jj 指令
         lz c 106  08
+            00 打印（调试）
+            zt _rt_putc 01 45 02
             00 读下一个字符
             tz c2 = fh 01 g_src ht g_pos 02
             g_pos = g_pos ht 1

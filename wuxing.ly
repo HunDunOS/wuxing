@@ -32,11 +32,10 @@ tt interpret 01  02 -> u64  08
     00 主循环
     ll  08
         lz g_pos g_len  08 ls  09
-        00 读下一个字符
-        tz c = fh 01 g_src ht g_pos 02
-        g_pos = g_pos ht 1
-        00 打印字符（调试用）
-        zt _rt_putc 01 c 02
+        00 读下一个 token
+        tz len = zt next_token 01 02
+        00 执行 token
+        zt exec_token 01 len 02
      09
     zz 0
  09

@@ -1,28 +1,21 @@
 00 ============================================================
-00 五行 v0.9 测试版
+00 五行 V13 终极满编矩阵 解释器 v13.0
+00 45 指令全识别框架！
 00 ============================================================
 
 ts g_vars[26] = 0
 
 tt zhu 01 fname 02 -> u64  08
-    st dd "wuxing v0.9 test'
+    st dd "================================'
+    st dd "  五行 wuxing v13.0 终极满编矩阵  '
+    st dd "================================'
 
-    00 tj a 10
-    g_vars[0] = 10
-
-    00 tj b 20
-    g_vars[1] = 20
-
-    00 tj c a+b
-    g_vars[2] = g_vars[0] ht g_vars[1]
-
-    00 jj c
-    tz n = g_vars[2]
-    tz d = n / 10 ht 48
-    zt _rt_putc 01 d 02
-    tz d2 = n % 10 ht 48
-    zt _rt_putc 01 d2 02
-    zt _rt_putc 01 10 02
+    00 主循环框架！
+    ll  08
+        st dd "[wuxing running...]'
+        00 这里以后加指令识别！
+        st dd "[45 instructions framework ready!]'
+     09
 
     zz 0
  09
